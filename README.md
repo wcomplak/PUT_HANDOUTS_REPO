@@ -1,2 +1,2 @@
 # PUT_HANDOUTS_REPO
-Public resources for PT students.
+Public resources for PUT students.
