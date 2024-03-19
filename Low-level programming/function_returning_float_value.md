@@ -1,6 +1,6 @@
 
 Let's assume we need a function returning a floating-point value.\
-In MS C/C++ x86 such values are returned always on the *FPU* stack. This makes things easier since the value is always 80b *extended*.
+In MS C/C++ x86 such values are returned always on the *FPU* stack. This makes things easier if you use *FPU* to compute since the value is always 80b *extended*.
 * * *
 #### A function adding *float* and *int* returning *float*, computations on the *FPU*
 its prototype would look like:
@@ -41,7 +41,7 @@ and stack layout is the same:
 | argument *a*   | 4b | esp + 4 |
 | argument *b*   | 4b | esp + 8 |
 
-the key problem here is how to copy value from xmm register to FPU stack - there is no direct mov/load way. Of course there is CPU stack there:
+the key problem here is how to copy value from *xmm* register to *FPU* stack - there is no direct *mov/load* way. Of course there is CPU stack there:
 ~~~
 __declspec(naked) float __cdecl sum(float a, int b)
 {
