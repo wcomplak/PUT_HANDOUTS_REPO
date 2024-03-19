@@ -45,17 +45,17 @@ the key problem here is how to copy value from xmm register to FPU stack - there
 ~~~
 __declspec(naked) float __cdecl sum(float a, int b)
 {
-	__asm
-	{
-		movss xmm0, [esp + 4]     ; load a
-		cvtsi2ss xmm1, [esp + 8]  ; load+convert int->float b
-		addss xmm0, xmm1          ; add a and b
+    __asm
+    {
+        movss xmm0, [esp + 4]     ; load a
+        cvtsi2ss xmm1, [esp + 8]  ; load+convert int->float b
+        addss xmm0, xmm1          ; add a and b
         sub esp,4                 ; reserve memory
-		movss [esp], xmm0         ; copy to CPU stack
-		fld dword ptr [esp]       ; and load to FPU stack
-		add esp,4                 ; free CPU stack
-		ret                       ; leave the result on the FPU stack
-	}
+        movss [esp], xmm0         ; copy to CPU stack
+        fld dword ptr [esp]       ; and load to FPU stack
+        add esp,4                 ; free CPU stack
+        ret                       ; leave the result on the FPU stack
+    }
 }
 ~~~
 
